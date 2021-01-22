@@ -6,11 +6,24 @@ void main() => runApp(MyApp());
 //   runApp(MyApp());
 // }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+
+class MyAppState extends State {
   var qIndex = 0;
 
   void answerQuestion() {
-    qIndex += 1;
+
+    setState(() {
+      qIndex += 1;
+    });
+
 
     if (qIndex > 3) qIndex = 0;
     print(qIndex);
@@ -28,11 +41,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(questions[qIndex]),
+          title: Text('QUIZZZZ'),
         ),
         body: Column(
           children: [
-            Text('The question'),
+            Text(questions[qIndex]),
             RaisedButton(
               child: Text('Answer 1'),
               onPressed: answerQuestion,
